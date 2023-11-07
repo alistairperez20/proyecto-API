@@ -1,0 +1,30 @@
+<% if flash[:error] %>
+  <div class="alert alert-danger">
+    <%= flash[:error] %>
+  </div>
+<% end %>
+
+<h1>Consulta del clima</h1>
+
+<%= form_tag(weather_index_path, method: :get) do %>
+  <div class="form-group">
+    <%= label_tag :city, 'Introduce una ciudad' %>
+    <%= text_field_tag :city, nil, class: 'form-control' %>
+  </div>
+
+  <%= submit_tag 'Consultar', class: 'btn btn-primary' %>
+<% end %>
+
+<% if @weather_data %>
+  <h2>Datos del clima</h2>
+  <p>Temperatura: <%= @weather_data['main']['temp'] %> °C</p>
+  <p>Descripción: <%= @weather_data['weather'][0]['description'] %></p>
+  <p>Ciudad: <%= @weather_data['name'] %></p>
+
+  <%= form_for(WeatherData.new) do |f| %>
+    <%= f.hidden_field :city, value: @weather_data['name'] %>
+    <%= f.hidden_field :temperature, value: @weather_data['main']['temp'] %>
+    <%= f.hidden_field :description, value: @weather_data['weather'][0]['description'] %>
+    <%= f.submit 'Guardar en la base de datos', class: 'btn btn-success' %>
+  <% end %>
+<% end %>
