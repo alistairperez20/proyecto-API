@@ -7,7 +7,7 @@ class WeatherController < ApplicationController
   end
 
   def fetch_weather
-    api_key = '433eb2c0cc8d4e79bc9f87cefd0f19bb'
+    api_key = 'd77aa7885eda4fba70a99a454fd0028f'
     city = params[:city]
 
     response = HTTParty.get("https://api.openweathermap.org/data/2.5/weather?q=#{city}&appid=#{api_key}")
