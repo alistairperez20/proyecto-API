@@ -2,7 +2,7 @@ require 'httparty'
 
 class WeatherController < ApplicationController
   def index
-    response = HTTParty.get("https://api.openweathermap.org/data/2.5/weather?q=YourCity&appid=YourAPIKey")
+    response = HTTParty.get("https://api.openweathermap.org/data/2.5/weather?q=YourCity&appid=433eb2c0cc8d4e79bc9f87cefd0f19bb")
     data = JSON.parse(response.body)
 
     if response.code == 200
